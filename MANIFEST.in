@@ -1,0 +1,4 @@
+include src/vedp_conciliacion_entrecuentas_p2p/static/*.json
+include src/vedp_conciliacion_entrecuentas_p2p/static/sql/ExtractTransformLoad/*.sql
+include versioneer.py
+include src/vedp_conciliacion_entrecuentas_p2p/_version.py

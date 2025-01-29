@@ -1,0 +1,68 @@
+{
+    "global": {
+        "dsn": "impala-virtual-prd",
+        "parametros_lz": {
+            "zona": "proceso_enmascarado",
+            "zonap": "proceso_enmascarado",
+            "zona_depositos": "resultados_vspc_depositos",
+            "tabla_hub_p2p": "interoperabilidad_hub_p2p",
+            "tabla_pmd_p2p": "interoperabilidad_pmd_p2p",
+            "tabla_temp_hub_p2p": "interoperabilidad_temp_hub_p2p",
+            "tabla_pos_p2p": "interoperabilidad_pos_p2p",
+            "tabla_temp_pos_p2p": "interoperabilidad_temp_pos_p2p",
+            "tabla_depositos": "fco_maestro_transacciones_ctas",
+            "tabla_temp_depositos_p2p": "interoperabilidad_temp_depositos_p2p",
+            "tabla_temp_hub_p2p_sin_fecha": "temp_hub_p2p_sin_fecha",
+            "start_date": ""
+        },
+        "rutas_nas": {
+            "ruta_hub_p2p": "PSH_P2P",
+            "ruta_pos_p2p": "POSP2P",
+            "ruta_pmd_p2p": "PMDP2P",
+            "ruta_reportes": "RESULTADOS_CONCILIACION_P2P",
+            "ruta_evidencia_conciliacion": "RESULTADOS_COMPENSACION_P2P"
+        },
+        "ruta_carpeta_compartida": "//SBMDEBNS03/vp_negocios/VP_ENT_PROD/OP_PRO_CLI/GCIA_OPE_GES_FLU/EVC_Gest_Flu",
+        "email": {
+            "to": "mamonsal@bancolombia.com.co",
+            "cc": "msotelo@bancolombia.com.co"
+        }
+    },
+    "ExtractTransformLoad": {
+        "archivos_sql" : [
+            "001_create_pos_temp_p2p.sql",
+            "002_create_depositos_temp_p2p.sql",
+            "003_update_hub_pos_data.sql",
+            "004_create_data_offus.sql",
+            "005_create_data_onus.sql",
+            "005_update_hub_escenario_offus.sql",
+            "006_update_hub_escenario_onus.sql",
+            "007_update_hub_final_data.sql",
+            "008_create_offus.sql",
+            "009_diferencia_valor.sql"
+        ],
+        "tareas": [
+            {
+                "nombre" : "cargar_hub_p2p",
+                "kwargs" : []
+            },
+            {
+
+                "nombre" : "consolidar_activo",
+                "kwargs" : []
+            },
+            {
+                "nombre": "enviar_correo",
+                "kwargs" : []
+            },
+            {
+                "nombre": "guardar_historial",
+                "kwargs" : []
+            },
+            {
+                "nombre": "compensar_pmd",
+                "kwargs": []
+            }
+        ]
+    }
+}
