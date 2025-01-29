@@ -43,7 +43,7 @@
         ],
         "tareas": [
             {
-                "nombre" : "cargar_hub_p2p",
+                "nombre" : "conciliacion_p2p",
                 "kwargs" : []
             },
             {

@@ -2,27 +2,6 @@ from datetime import datetime
 from typing import Optional
 
 
-def _solicitar_y_formatear_fecha(
-    self, prompt="Ingresa la fecha de compensacion (YYYY-MM-DD): "
-):
-    """
-    Solicita la fecha al usuario y la formatea para actualizar los parámetros.
-    ------
-    Parámetros:
-    prompt : str
-        Mensaje para solicitar la fecha al usuario.
-
-    Retorna:
-    --------
-    fecha : str
-        Fecha formateada en formato 'YYYYMMDD'.
-    """
-    fecha_compensacion = self.solicitar_fecha(prompt)
-    fecha = fecha_compensacion.strftime("%Y%m%d")
-    self.params_lz.update({"start_date": fecha})
-    return fecha
-
-
 def ajustando_num_rastreo(
     indicador_rev: str, num_rastreo: str, num_rev_rastreo: str
 ) -> str:
@@ -171,3 +150,32 @@ def clasificacion_tipo_ajuste_pos(tipo_resp: str) -> str:
     if tipo_resp in ["81", 81]:
         return "E"  # Extracompensación
     return "-"  # No Aplica
+
+
+def solicitar_fecha(prompt="Por favor, ingresa la fecha en formato YYYY-MM-DD: "):
+    meses = {
+        "01": "Enero",
+        "02": "Febrero",
+        "03": "Marzo",
+        "04": "Abril",
+        "05": "Mayo",
+        "06": "Junio",
+        "07": "Julio",
+        "08": "Agosto",
+        "09": "Septiembre",
+        "10": "Octubre",
+        "11": "Noviembre",
+        "12": "Diciembre",
+    }
+    while True:
+        fecha_str = input(prompt)
+        try:
+            fecha = datetime.strptime(fecha_str, "%Y-%m-%d")
+            mes = fecha.strftime("%m")
+            año = fecha.strftime("%Y")
+            mes_formateado = f"{mes}_{meses[mes]}"
+            return fecha
+        except ValueError:
+            print(
+                "Formato invalido. Por favor, ingresa la fecha en formato YYYY-MM-DD."
+            )
