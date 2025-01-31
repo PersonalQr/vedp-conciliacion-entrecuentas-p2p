@@ -127,6 +127,7 @@ class ExtractTransformLoad(Step):
             self.hp,
             self.params_lz,
             self.getGlobalConfiguration(),
+            self.getSQLPath(),
         )
 
         conciliacion.cargar_hub_p2p()
@@ -199,6 +200,20 @@ class ExtractTransformLoad(Step):
             )
             extra = f"""<p>Diferencia Valor.</p>
             <p>{df_sin_valor.to_html(index=False)}</p>"""
+            df_diferencia_valor = self.hp.obtener_dataframe_archivo(
+                self.getSQLPath()
+                + "ExtractTransformLoad/996_select_diferencia_valor.sql",
+                self.params_lz,
+            )
+            df_diferencia_valor.to_csv(
+                os.path.join(
+                    os.path.normpath(f"{ruta_carpeta_compartida}/{nombre_carpeta}"),
+                    f"resultado_diferencia_valor_{params['start_date']}.csv",
+                ),
+                index=False,
+                encoding="utf-8",
+            )
+
         correo = EnviarCorreo(params["start_date"], self.getGlobalConfiguration())
         correo.estructura_correo(df_offus, df_onus, df_rechazadas, extra)
         df_offus_final = self.hp.obtener_dataframe_archivo(

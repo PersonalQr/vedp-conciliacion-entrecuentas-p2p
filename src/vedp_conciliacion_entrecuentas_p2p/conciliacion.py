@@ -15,10 +15,11 @@ from vedp_conciliacion_entrecuentas_p2p.utils import (
 
 
 class ConciliacionP2P:
-    def __init__(self, spk, hp, params_lz, getGlobalConfiguration):
+    def __init__(self, spk, hp, params_lz, getGlobalConfiguration, getSQLPath):
         self.hp = hp
         self.spk = spk
         self.fecha = ""
+        self.getSQLPath = getSQLPath
         self.params_lz = params_lz
         self.getGlobalConfiguration = getGlobalConfiguration
 
@@ -27,8 +28,7 @@ class ConciliacionP2P:
         print("********** Inicio Carga de Archivos HUB **********")
 
         self.hp.ejecutar_archivo(
-            self.getSQLPath()
-            + "ExtractTransformLoad/000_create_temp_hub_sin_fecha.sql",
+            self.getSQLPath + "ExtractTransformLoad/000_create_temp_hub_sin_fecha.sql",
             self.params_lz,
         )
 
@@ -64,7 +64,7 @@ class ConciliacionP2P:
         hub_cargado = False
         try:
             count_date = self.hp.obtener_dataframe_archivo(
-                self.getSQLPath() + "ExtractTransformLoad/990_select_hub_day.sql",
+                self.getSQLPath + "ExtractTransformLoad/990_select_hub_day.sql",
                 self.params_lz,
             )
         except Exception:
