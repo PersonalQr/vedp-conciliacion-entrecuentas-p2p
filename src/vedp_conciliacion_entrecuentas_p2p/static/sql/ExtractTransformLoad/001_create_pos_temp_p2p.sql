@@ -30,4 +30,4 @@ LEFT JOIN
     {zonap}.temp_{tabla_hub_p2p} AS hub
     ON pos.llave_1 = hub.llave_1
 WHERE
-    pos.fecha_log_transaccion = {start_date};
+    pos.fecha_log_transaccion = '{start_date}';

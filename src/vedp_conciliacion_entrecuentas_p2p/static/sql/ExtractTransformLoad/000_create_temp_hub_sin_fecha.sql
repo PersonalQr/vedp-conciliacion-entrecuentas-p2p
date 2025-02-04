@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS {zonap}.temp_{tabla_hub_p2p} PURGE;
 DROP TABLE IF EXISTS {zonap}.{tabla_temp_hub_p2p_sin_fecha} PURGE;
 
 CREATE TABLE {zonap}.{tabla_temp_hub_p2p_sin_fecha} (    
