@@ -8,16 +8,19 @@ SELECT
     descripcion,
     CAST(
         CASE 
-            WHEN montototal <> valor_monto_depositos THEN montototal - valor_monto_depositos
+            WHEN montototal <> CAST(valor_monto_depositos AS DECIMAL(15,2)) 
+            THEN montototal - CAST(valor_monto_depositos AS DECIMAL(15,2))
             ELSE 0
-        END
-    AS BIGINT) AS check_dep,
+        END AS DECIMAL(15,2)
+    ) AS check_dep,
     CAST(
         CASE 
-            WHEN montototal <> valor_monto_pos THEN montototal - valor_monto_pos
+            WHEN montototal <> (CAST(valor_monto_pos AS DECIMAL(15,2)) / 100) 
+            THEN montototal - (CAST(valor_monto_pos AS DECIMAL(15,2)) / 100)
             ELSE 0
-        END
-    AS BIGINT) AS check_pos
+        END AS DECIMAL(15,2)
+    ) AS check_pos
 FROM {zonap}.temp_hub_final_data_offus
-WHERE montototal <> valor_monto_depositos
-OR montototal <> valor_monto_pos;
+WHERE 
+    montototal <> CAST(valor_monto_depositos AS DECIMAL(15,2))
+    OR montototal <> (CAST(valor_monto_pos AS DECIMAL(15,2)) / 100);

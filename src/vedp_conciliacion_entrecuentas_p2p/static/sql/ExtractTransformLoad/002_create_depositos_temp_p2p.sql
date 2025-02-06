@@ -43,8 +43,8 @@ LEFT JOIN {zonap}.temp_{tabla_hub_p2p} AS hub
 ON CONCAT(CAST(depo.f_efectiva_trn AS STRING), '|', substr((regexp_extract(descripcion_detalle_1, '(HUB[^ ]{{12}})', 1)),4,12)) = hub.llave_2
 WHERE
     depo.f_efectiva_trn = {start_date}
-    AND depo.year = CAST(SUBSTR(CAST({start_date} AS STRING), 1, 4) AS INT)
-    AND depo.month = CAST(SUBSTR(CAST({start_date} AS STRING), 5, 2) AS INT)
     AND CAST(depo.cod_trn AS INT) IN (
         3078, 3081, 2599, 2600, 3106, 3108, 2603, 2634, 3163, 3168, 2645, 2646, 3192, 3197, 2649, 2650
     );
+
+ 

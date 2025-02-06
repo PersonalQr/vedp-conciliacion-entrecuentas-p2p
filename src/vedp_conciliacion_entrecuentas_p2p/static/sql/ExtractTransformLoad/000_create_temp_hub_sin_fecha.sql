@@ -28,4 +28,6 @@ CREATE TABLE {zonap}.{tabla_temp_hub_p2p_sin_fecha} (
     idtrxbanco STRING,
     identidadbancariapagador STRING,
     identidadbancariacomercio STRING
-)
+);
+
+DROP TABLE IF EXISTS {zonap}.temp_{tabla_pos_p2p} PURGE;

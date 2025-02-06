@@ -10,6 +10,3 @@ FROM {zonap}.temp_hub_final_data_offus
 WHERE escenario_cruce IN ('100', '200', '209', '109')
 GROUP BY descripcion
 ORDER BY descripcion;
-
-
-

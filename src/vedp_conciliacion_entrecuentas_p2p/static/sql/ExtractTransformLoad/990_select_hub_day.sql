@@ -14,4 +14,4 @@ SELECT
 FROM
     {zona}.{tabla_hub_p2p}
 WHERE
-    fecha_trx = {start_date}
+    fecha_trx = {start_date};

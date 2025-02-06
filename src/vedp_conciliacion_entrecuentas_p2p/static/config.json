@@ -25,7 +25,7 @@
         "ruta_carpeta_compartida": "//SBMDEBNS03/vp_negocios/VP_ENT_PROD/OP_PRO_CLI/GCIA_OPE_GES_FLU/EVC_Gest_Flu",
         "email": {
             "to": "mamonsal@bancolombia.com.co",
-            "cc": "msotelo@bancolombia.com.co"
+            "cc": "msotelo@bancolombia.com.co; lejcolor@bancolombia.com.co"
         }
     },
     "ExtractTransformLoad": {
@@ -43,7 +43,7 @@
         ],
         "tareas": [
             {
-                "nombre" : "conciliacion_p2p",
+                "nombre" : "cargar_hub_p2p",
                 "kwargs" : []
             },
             {
